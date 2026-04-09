@@ -67,23 +67,14 @@ def _load_tasks():
 # ---------------------------------------------------------------------------
 
 def _get_config() -> Dict[str, str]:
-    """Read and validate required environment variables."""
     cfg = {
-        "api_base_url": API_BASE_URL.strip(),
-        "model_name":   MODEL_NAME.strip(),
-        "api_key":      (HF_TOKEN or "").strip(),
+        "api_base_url": os.environ.get("API_BASE_URL", "https://router.huggingface.co/v1").strip(),
+        "model_name":   os.environ.get("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct").strip(),
+        "api_key":      (os.environ.get("OPENAI_API_KEY") or os.environ.get("HF_TOKEN", "")).strip(),
     }
-    # Fail fast if any required value is missing or still a placeholder
-    missing = [
-        k for k, v in cfg.items()
-        if not v or v.startswith("<your-")
-    ]
+    missing = [k for k, v in cfg.items() if not v]
     if missing:
-        print(
-            f"[ERROR] Missing required environment variables: "
-            f"{[k.upper() for k in missing]}",
-            file=sys.stderr,
-        )
+        print(f"[ERROR] Missing required environment variables: {[k.upper() for k in missing]}", file=sys.stderr)
         sys.exit(1)
     return cfg
 

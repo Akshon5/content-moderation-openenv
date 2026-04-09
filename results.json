@@ -1,0 +1,606 @@
+{
+  "model": "Qwen/Qwen2.5-72B-Instruct",
+  "api_base_url": "https://router.huggingface.co/v1",
+  "timestamp": "2026-04-09T19:46:49.760791+00:00",
+  "total_elapsed_sec": 137.52,
+  "tasks": [
+    {
+      "task_name": "task_easy",
+      "accuracy": 1.0,
+      "correct": 10,
+      "total_posts": 10,
+      "total_reward": 11.94,
+      "actions": {
+        "approve": 3,
+        "warn": 0,
+        "escalate": 0,
+        "remove": 7
+      },
+      "duration_sec": 22.9,
+      "steps": [
+        {
+          "step": 1,
+          "post_id": "easy_004",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "Post contains a suspicious link and appears to be a scam, which violates platform policies.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 2,
+          "post_id": "easy_006",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.2,
+          "confidence": 1.0,
+          "reasoning": "Post is positive and does not violate any community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 3,
+          "post_id": "easy_003",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post contains harassment and an explicit threat, violating community guidelines.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 4,
+          "post_id": "easy_005",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post contains misinformation that can cause real-world harm by spreading false beliefs.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 5,
+          "post_id": "easy_002",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.2,
+          "confidence": 1.0,
+          "reasoning": "The post contains hate speech targeting immigrants.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 6,
+          "post_id": "easy_009",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post contains hate speech targeting a religious group.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 7,
+          "post_id": "easy_008",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.2,
+          "confidence": 1.0,
+          "reasoning": "The post is harmless and does not violate any community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 8,
+          "post_id": "easy_001",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.2,
+          "confidence": 1.0,
+          "reasoning": "Content is positive and inoffensive, no reports or history of issues.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 9,
+          "post_id": "easy_007",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.2,
+          "confidence": 1.0,
+          "reasoning": "Explicit adult content on a children's platform violates community guidelines.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 10,
+          "post_id": "easy_010",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "Post contains harmful misinformation about a dangerous health practice.",
+          "feedback": "\u2713 Correct decision: remove"
+        }
+      ]
+    },
+    {
+      "task_name": "task_medium",
+      "accuracy": 0.5,
+      "correct": 10,
+      "total_posts": 20,
+      "total_reward": 5.93,
+      "actions": {
+        "approve": 8,
+        "warn": 10,
+        "escalate": 1,
+        "remove": 1
+      },
+      "duration_sec": 51.1,
+      "steps": [
+        {
+          "step": 1,
+          "post_id": "med_015",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.17,
+          "confidence": 0.85,
+          "reasoning": "The post expresses frustration but does not violate community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 2,
+          "post_id": "med_009",
+          "decision": "warn",
+          "correct_action": "warn",
+          "correct": true,
+          "reward": 0.95,
+          "confidence": 0.75,
+          "reasoning": "Post contains potentially harmful medical advice and could encourage others to stop medication without professional guidance.",
+          "feedback": "\u2713 Correct decision: warn"
+        },
+        {
+          "step": 3,
+          "post_id": "med_004",
+          "decision": "warn",
+          "correct_action": "warn",
+          "correct": true,
+          "reward": 0.95,
+          "confidence": 0.75,
+          "reasoning": "The post contains potential misinformation about health practices, which could be harmful, but given the author's clean history, a warning is appropriate.",
+          "feedback": "\u2713 Correct decision: warn"
+        },
+        {
+          "step": 4,
+          "post_id": "med_012",
+          "decision": "warn",
+          "correct_action": "remove",
+          "correct": false,
+          "reward": -0.83,
+          "confidence": 0.8,
+          "reasoning": "Post likely contains a scam, but lacks explicit evidence of harm; author's history of violations increases suspicion.",
+          "feedback": "\u2717 Warned instead of removing \u2014 significant under-moderation"
+        },
+        {
+          "step": 5,
+          "post_id": "med_011",
+          "decision": "warn",
+          "correct_action": "escalate",
+          "correct": false,
+          "reward": 0.22,
+          "confidence": 0.8,
+          "reasoning": "Post expresses feelings of hopelessness and suicidal ideation, which requires a warning and potential support.",
+          "feedback": "~ Warned instead of escalating \u2014 slightly under-reacted"
+        },
+        {
+          "step": 6,
+          "post_id": "med_017",
+          "decision": "warn",
+          "correct_action": "escalate",
+          "correct": false,
+          "reward": 0.225,
+          "confidence": 0.75,
+          "reasoning": "Post suggests insider information and prejudges the outcome of a trial, which could be seen as irresponsible reporting.",
+          "feedback": "~ Warned instead of escalating \u2014 slightly under-reacted"
+        },
+        {
+          "step": 7,
+          "post_id": "med_002",
+          "decision": "warn",
+          "correct_action": "approve",
+          "correct": false,
+          "reward": -0.37,
+          "confidence": 0.7,
+          "reasoning": "The post contains a hyperbolic threat and strong negative emotion, which could be interpreted as a minor form of harassment.",
+          "feedback": "\u2717 Warned clean content \u2014 minor over-moderation"
+        },
+        {
+          "step": 8,
+          "post_id": "med_013",
+          "decision": "approve",
+          "correct_action": "escalate",
+          "correct": false,
+          "reward": -1.14,
+          "confidence": 0.9,
+          "reasoning": "The post provides a public service announcement with specific claims and evidence, which is generally allowed on a general platform.",
+          "feedback": "\u2717 Approved content that needed escalation"
+        },
+        {
+          "step": 9,
+          "post_id": "med_006",
+          "decision": "escalate",
+          "correct_action": "approve",
+          "correct": false,
+          "reward": -0.67,
+          "confidence": 0.7,
+          "reasoning": "The post uses strong adversarial phrasing and has a high number of reports, which may indicate complex cultural context or potential policy violations.",
+          "feedback": "\u2717 Escalated clean content unnecessarily"
+        },
+        {
+          "step": 10,
+          "post_id": "med_019",
+          "decision": "warn",
+          "correct_action": "warn",
+          "correct": true,
+          "reward": 0.94,
+          "confidence": 0.7,
+          "reasoning": "The post contains adversarial phrasing and has a high number of reports, indicating potential borderline content.",
+          "feedback": "\u2713 Correct decision: warn"
+        },
+        {
+          "step": 11,
+          "post_id": "med_003",
+          "decision": "warn",
+          "correct_action": "escalate",
+          "correct": false,
+          "reward": 0.215,
+          "confidence": 0.85,
+          "reasoning": "The post contains a vague threat and the author is a repeat offender.",
+          "feedback": "~ Warned instead of escalating \u2014 slightly under-reacted"
+        },
+        {
+          "step": 12,
+          "post_id": "med_001",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.17,
+          "confidence": 0.85,
+          "reasoning": "The post uses sarcasm to critique gender bias in tech, which is within community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 13,
+          "post_id": "med_005",
+          "decision": "warn",
+          "correct_action": "warn",
+          "correct": true,
+          "reward": 0.94,
+          "confidence": 0.7,
+          "reasoning": "Post contains a health claim that could be misleading and a potential affiliate link, which is borderline content.",
+          "feedback": "\u2713 Correct decision: warn"
+        },
+        {
+          "step": 14,
+          "post_id": "med_010",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post is a positive review of a product with no signs of misconduct or policy violations.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 15,
+          "post_id": "med_016",
+          "decision": "approve",
+          "correct_action": "warn",
+          "correct": false,
+          "reward": -0.685,
+          "confidence": 0.85,
+          "reasoning": "The post, while potentially off-putting to some, does not violate community guidelines and is a common type of motivational content.",
+          "feedback": "\u2717 Approved content that needed a warning"
+        },
+        {
+          "step": 16,
+          "post_id": "med_008",
+          "decision": "warn",
+          "correct_action": "remove",
+          "correct": false,
+          "reward": -0.825,
+          "confidence": 0.75,
+          "reasoning": "The post shows concern but also solicits personal information, which could lead to privacy issues.",
+          "feedback": "\u2717 Warned instead of removing \u2014 significant under-moderation"
+        },
+        {
+          "step": 17,
+          "post_id": "med_014",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post is a harmless programming joke and does not violate any community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 18,
+          "post_id": "med_020",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post is supportive and promotes mental health awareness without any harmful content.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 19,
+          "post_id": "med_007",
+          "decision": "remove",
+          "correct_action": "warn",
+          "correct": false,
+          "reward": -1.08,
+          "confidence": 0.8,
+          "reasoning": "The content is too mature and politically charged for a children's platform.",
+          "feedback": "\u2717 Removed content that only needed a warning \u2014 over-moderation"
+        },
+        {
+          "step": 20,
+          "post_id": "med_018",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post expresses a controversial opinion but does not violate any community guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        }
+      ]
+    },
+    {
+      "task_name": "task_hard",
+      "accuracy": 0.75,
+      "correct": 15,
+      "total_posts": 20,
+      "total_reward": 14.545,
+      "actions": {
+        "approve": 4,
+        "warn": 2,
+        "escalate": 6,
+        "remove": 8
+      },
+      "duration_sec": 63.49,
+      "steps": [
+        {
+          "step": 1,
+          "post_id": "hard_015",
+          "decision": "warn",
+          "correct_action": "warn",
+          "correct": true,
+          "reward": 0.95,
+          "confidence": 0.75,
+          "reasoning": "The post contains borderline content that could be perceived as discriminatory, and the author is a repeat offender.",
+          "feedback": "\u2713 Correct decision: warn"
+        },
+        {
+          "step": 2,
+          "post_id": "hard_009",
+          "decision": "escalate",
+          "correct_action": "remove",
+          "correct": false,
+          "reward": 0.39,
+          "confidence": 0.1,
+          "reasoning": "parse_error_fallback",
+          "feedback": "~ Escalated instead of removing \u2014 cautious but acceptable"
+        },
+        {
+          "step": 3,
+          "post_id": "hard_004",
+          "decision": "escalate",
+          "correct_action": "approve",
+          "correct": false,
+          "reward": -0.61,
+          "confidence": 0.1,
+          "reasoning": "parse_error_fallback",
+          "feedback": "\u2717 Escalated clean content unnecessarily"
+        },
+        {
+          "step": 4,
+          "post_id": "hard_012",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post contains a direct threat and harassment towards another user, violating community guidelines.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 5,
+          "post_id": "hard_011",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post provides instructions on illegal activities and uses coded language, violating platform policies.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 6,
+          "post_id": "hard_017",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post provides medical advice for a serious condition and does not violate any policy guidelines.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 7,
+          "post_id": "hard_002",
+          "decision": "escalate",
+          "correct_action": "escalate",
+          "correct": true,
+          "reward": 0.84,
+          "confidence": 0.7,
+          "reasoning": "Satirical content with potential for misinterpretation, especially given high report count.",
+          "feedback": "\u2713 Correct decision: escalate"
+        },
+        {
+          "step": 8,
+          "post_id": "hard_013",
+          "decision": "escalate",
+          "correct_action": "escalate",
+          "correct": true,
+          "reward": 0.85,
+          "confidence": 0.75,
+          "reasoning": "The post contains sensitive content that could be interpreted as promoting harmful behavior, requiring further review.",
+          "feedback": "\u2713 Correct decision: escalate"
+        },
+        {
+          "step": 9,
+          "post_id": "hard_006",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post contains an explicit threat and harassment, which violates the platform's policy.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 10,
+          "post_id": "hard_019",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.17,
+          "confidence": 0.85,
+          "reasoning": "The post uses ethnic stereotypes in a derogatory manner, which can be considered hate speech.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 11,
+          "post_id": "hard_003",
+          "decision": "warn",
+          "correct_action": "remove",
+          "correct": false,
+          "reward": -0.825,
+          "confidence": 0.75,
+          "reasoning": "The post contains borderline content suggesting a link between vaccines and autism, which is a sensitive topic and could be misleading.",
+          "feedback": "\u2717 Warned instead of removing \u2014 significant under-moderation"
+        },
+        {
+          "step": 12,
+          "post_id": "hard_001",
+          "decision": "escalate",
+          "correct_action": "remove",
+          "correct": false,
+          "reward": 0.335,
+          "confidence": 0.65,
+          "reasoning": "The post contains language that could be interpreted as coded hate speech, requiring further review.",
+          "feedback": "~ Escalated instead of removing \u2014 cautious but acceptable"
+        },
+        {
+          "step": 13,
+          "post_id": "hard_005",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post contains hate speech and explicit threats against immigrants, violating community guidelines.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 14,
+          "post_id": "hard_010",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post contains a thoughtful political argument without violating any policies, despite high report counts.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 15,
+          "post_id": "hard_016",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The hidden text contains a clear threat of violence against a specific group, violating hate speech policies.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 16,
+          "post_id": "hard_008",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "Adult-adjacent content on a children's platform violates strict guidelines.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 17,
+          "post_id": "hard_014",
+          "decision": "remove",
+          "correct_action": "remove",
+          "correct": true,
+          "reward": 1.19,
+          "confidence": 0.95,
+          "reasoning": "The post contains hate speech and misinformation that can cause real-world harm.",
+          "feedback": "\u2713 Correct decision: remove"
+        },
+        {
+          "step": 18,
+          "post_id": "hard_020",
+          "decision": "approve",
+          "correct_action": "approve",
+          "correct": true,
+          "reward": 1.18,
+          "confidence": 0.9,
+          "reasoning": "The post criticizes a political figure's actions without violating hate speech or harassment policies.",
+          "feedback": "\u2713 Correct decision: approve"
+        },
+        {
+          "step": 19,
+          "post_id": "hard_007",
+          "decision": "approve",
+          "correct_action": "escalate",
+          "correct": false,
+          "reward": -1.135,
+          "confidence": 0.85,
+          "reasoning": "The term 'terrone' is used affectionately here and does not violate community guidelines.",
+          "feedback": "\u2717 Approved content that needed escalation"
+        },
+        {
+          "step": 20,
+          "post_id": "hard_018",
+          "decision": "escalate",
+          "correct_action": "escalate",
+          "correct": true,
+          "reward": 0.72,
+          "confidence": 0.1,
+          "reasoning": "parse_error_fallback",
+          "feedback": "\u2713 Correct decision: escalate"
+        }
+      ]
+    }
+  ]
+}
