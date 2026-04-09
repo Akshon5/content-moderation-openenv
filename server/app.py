@@ -1,5 +1,5 @@
 """
-server/app.py — Server entry point for OpenEnv multi-mode deployment.
+server/app.py — server entry point for OpenEnv multi-mode deployment.
 Imports the FastAPI app from the root app.py and exposes a main() function
 as required by the [project.scripts] entry point specification.
 """
@@ -14,7 +14,7 @@ from app import app  # noqa: F401 — re-export for openenv
 
 
 def main():
-    """Server entry point called by: uv run server"""
+    """server entry point called by: uv run server"""
     import uvicorn
     port = int(os.environ.get("PORT", 7860))
     uvicorn.run(
