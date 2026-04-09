@@ -1,4 +1,15 @@
-# Content Moderation RL Environment
+---
+title: Content Moderation OpenEnv
+emoji: 🛡️
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
+# 🛡️ Content Moderation RL Environment
+
 
 A **Meta AI Hackathon OpenEnv benchmark** that models **social media moderation as a sequential reinforcement learning problem**.
 
@@ -8,7 +19,7 @@ This makes the benchmark significantly closer to **real platform safety workflow
 
 ---
 
-##Why This Project Stands Out
+## Why This Project Stands Out
 Most moderation benchmarks are static classification datasets.
 
 This project evaluates whether an LLM or RL policy can perform:
@@ -126,6 +137,49 @@ Adversarial trust-and-safety benchmark:
 
 ---
 
+## Baseline Results
+
+The following deterministic baselines were obtained from local task-level sanity runs:
+
+- `task_easy` and `task_medium`: **always approve**
+- `task_hard`: **always escalate**
+
+| Task        | Accuracy | Total Reward | Baseline Policy |
+|-------------|----------|--------------|-----------------|
+| task_easy   | 30%      | -8.76        | always approve  |
+| task_medium | 40%      | -5.80        | always approve  |
+| task_hard   | 20%      | -0.10        | always escalate |
+
+These baselines intentionally use simple fixed-action policies to validate:
+- reward shaping behavior
+- curriculum difficulty progression
+- anti-loop penalties
+- cautious fallback handling
+
+A stronger LLM policy is expected to significantly outperform these naive baselines.
+
+## LLM Agent Results (Qwen/Qwen2.5-72B-Instruct)
+
+Results from a full inference run using `inference.py`:
+
+| Task        | Accuracy | Total Reward | Duration |
+|-------------|----------|--------------|----------|
+| task_easy   | 100%     | 11.95        | 30.87s   |
+| task_medium | 50%      | 5.93         | 64.37s   |
+| task_hard   | 80%      | 15.20        | 69.53s   |
+
+Total wall time: **164.81s** (well within the 20-minute budget).
+
+---
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
 ## FastAPI + OpenEnv API
 The environment is served through **FastAPI** and is fully **OpenEnv compatible**.
 
@@ -133,6 +187,8 @@ The environment is served through **FastAPI** and is fully **OpenEnv compatible*
 - `GET /ping` → health + available tasks
 - `POST /reset` → start new moderation episode
 - `POST /step` → submit moderation action
+- `GET /state` → full internal episode state
+- `GET /summary` → episode accuracy and reward breakdown
 - `GET /docs` → Swagger UI for testing
 
 ### Run locally
@@ -182,27 +238,6 @@ Run:
 ```bash
 docker run -p 7860:7860 moderation-env
 ```
-
----
-
-## Why Judges Will Care
-This project is not just a moderation demo.
-It introduces a **benchmarking framework for evaluating sequential safety reasoning in LLM agents**.
-
-It measures:
-- moderation quality
-- fairness under repeated exposure
-- escalation calibration
-- adversarial robustness
-- behavioral consistency
-- reward optimization under constraints
-
-This framing makes it useful for:
-- RL research
-- LLM agent evaluation
-- trust & safety simulation
-- reward-model benchmarking
-- human-AI moderation workflows
 
 ---
 

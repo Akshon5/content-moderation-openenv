@@ -126,38 +126,43 @@ def ping():
     }
 
 
+from typing import Optional, Dict, Any
+
 @app.post("/reset", response_model=Dict[str, Any], tags=["Environment"])
-def reset(req: ResetRequest):
+def reset(req: Optional[ResetRequest] = None):
     """
     Start a new episode.
 
     - Initializes the environment with the requested task and seed
     - Returns the first Observation the agent should act on
 
-    Args:
-        task: One of task_easy | task_medium | task_hard
-        seed: Random seed for post shuffling (default 42)
+    Defaults:
+        task = task_easy
+        seed = 42
     """
     global _env
 
-    if req.task not in TASK_REGISTRY:
+    task = req.task if req and req.task else "task_easy"
+    seed = req.seed if req and req.seed is not None else 42
+
+    if task not in TASK_REGISTRY:
         raise HTTPException(
             status_code=400,
             detail=(
-                f"Unknown task '{req.task}'. "
+                f"Unknown task '{task}'. "
                 f"Available: {list(TASK_REGISTRY.keys())}"
             ),
         )
 
-    make_env_fn = TASK_REGISTRY[req.task]
-    _env = make_env_fn(seed=req.seed)
-    obs  = _env.reset()
+    make_env_fn = TASK_REGISTRY[task]
+    _env = make_env_fn(seed=seed)
+    obs = _env.reset()
 
     return {
         "observation": obs.model_dump(),
-        "task":        req.task,
-        "seed":        req.seed,
-        "message":     f"Episode started. {obs.total_steps} posts to moderate.",
+        "task": task,
+        "seed": seed,
+        "message": f"Episode started. {obs.total_steps} posts to moderate.",
     }
 
 
