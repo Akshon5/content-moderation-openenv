@@ -1,0 +1,138 @@
+# openenv.yaml — Content Moderation RL Environment
+# Validated against OpenEnv spec_version: 1
+# Run: openenv validate
+
+spec_version: 1
+
+name: content-moderation-env
+version: "1.0.0"
+description: >
+  An OpenEnv-compliant reinforcement learning environment where an AI agent
+  acts as a social media content moderator. The agent reviews posts one by one
+  and decides whether to approve, warn, escalate, or remove each post.
+  Dense step-wise rewards guide the agent toward accurate, consistent moderation
+  that neither over- nor under-moderates. Includes three difficulty tiers:
+  easy (obvious decisions), medium (ambiguous/sarcasm), and hard
+  (adversarial phrasing, cultural nuance, multi-rule violations).
+
+type: rl
+
+runtime:
+  type: docker
+  dockerfile: Dockerfile
+
+app: app.py
+port: 7860
+
+action_space:
+  type: discrete
+  actions:
+    - name: approve
+      description: Post is safe, allow it through
+    - name: warn
+      description: Borderline content, flag the author with a warning
+    - name: escalate
+      description: Ambiguous or complex post, send to human reviewer
+    - name: remove
+      description: Clear policy violation, take the post down immediately
+
+observation_space:
+  fields:
+    - name: post_id
+      type: string
+      description: Unique identifier for the post
+    - name: content
+      type: string
+      description: Text content of the post to moderate
+    - name: author_history
+      type: string
+      description: "Author's violation history: clean | warned | repeat_offender"
+    - name: reported_count
+      type: integer
+      description: Number of user reports on this post
+    - name: platform_context
+      type: string
+      description: "Where the post appears: general | children | news | adult"
+    - name: step_number
+      type: integer
+      description: Current step index in the episode
+    - name: total_steps
+      type: integer
+      description: Total number of posts in the episode
+    - name: current_score
+      type: float
+      description: Normalized accuracy score so far (0.0 to 1.0)
+    - name: actions_taken
+      type: object
+      description: Count of each action taken so far in this episode
+    - name: recent_feedback
+      type: string
+      description: Human-readable feedback from the last moderation decision
+
+reward:
+  type: dense
+  description: >
+    Step-wise reward combining accuracy, confidence, and behavioral signals.
+    Correct decisions yield positive rewards scaled by action type.
+    Approving harmful content incurs the highest penalty (-1.5).
+    Removing clean content penalizes over-moderation (-1.0).
+    Confidence bonuses reward correct high-confidence decisions.
+    Behavioral penalties discourage always using the same action.
+
+tasks:
+  - name: task_easy
+    description: Obvious clean/harmful posts with clear correct decisions
+    file: tasks/task_easy.py
+    num_posts: 20
+
+  - name: task_medium
+    description: Ambiguous posts with sarcasm and context-dependent decisions
+    file: tasks/task_medium.py
+    num_posts: 20
+
+  - name: task_hard
+    description: Multi-rule violations, adversarial phrasing, cultural nuance
+    file: tasks/task_hard.py
+    num_posts: 20
+
+endpoints:
+  - method: GET
+    path: /ping
+    description: Health check — returns 200 with status ok
+  - method: POST
+    path: /reset
+    description: Start a new episode, returns first observation
+  - method: POST
+    path: /step
+    description: Submit a moderation action, returns next observation and reward
+  - method: GET
+    path: /state
+    description: Full internal episode state for debugging
+  - method: GET
+    path: /summary
+    description: Human-readable episode summary with accuracy and reward
+
+environment_variables:
+  - name: API_BASE_URL
+    description: The API endpoint for the LLM (e.g. https://api.openai.com/v1)
+    required: true
+  - name: MODEL_NAME
+    description: The model identifier to use for inference (e.g. gpt-4o)
+    required: true
+  - name: HF_TOKEN
+    description: Your Hugging Face API key
+    required: true
+
+resources:
+  cpu: 2
+  memory_gb: 8
+
+tags:
+  - reinforcement-learning
+  - content-moderation
+  - nlp
+  - safety
+  - dense-rewards
+  - multi-task
+
+license: MIT
