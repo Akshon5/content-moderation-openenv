@@ -393,13 +393,14 @@ class ContentModerationEnv:
 
     def _calculate_episode_score(self) -> float:
         """
-        Normalized score between 0.0 and 1.0 for the episode so far.
+        Normalized score strictly between 0.0 and 1.0 for the episode so far.
         Based on: accuracy of decisions made.
         """
         if not self._state or not self._state.decisions:
-            return 0.0
+            return 0.01
         correct = sum(1 for d in self._state.decisions if d["correct"])
-        return round(correct / len(self._state.decisions), 4)
+        raw = correct / len(self._state.decisions)
+        return round(min(max(raw, 0.01), 0.99), 4)
 
     def get_final_score(self) -> float:
         """Returns final normalized episode score (0.0 to 1.0)."""
