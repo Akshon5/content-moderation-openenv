@@ -1,12 +1,4 @@
----
-title: Content Moderation OpenEnv
-emoji: 🛡️
-colorFrom: blue
-colorTo: purple
-sdk: docker
-app_port: 7860
-pinned: false
----
+
 
 # 🛡️ Content Moderation RL Environment
 
